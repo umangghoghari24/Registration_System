@@ -113,7 +113,7 @@ class _changepasswordState extends State<changepassword> {
                       ),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(45),
-                          borderSide: BorderSide(width: 3,color: Colors.white)
+                          borderSide: BorderSide(width: 4,color: Colors.white)
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderSide:
