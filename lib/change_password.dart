@@ -1,9 +1,8 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:login_page/loginpage.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:get/get.dart';
 
 class changepassword extends StatefulWidget {
   const changepassword({Key? key}) : super(key: key);
@@ -161,8 +160,9 @@ class _changepasswordState extends State<changepassword> {
         ElevatedButton(onPressed: () async {
           if (changekey.currentState!.validate()) {
             var changedata = {
-              'newpass':currentpass.text,
-              'pass': newpass.text,
+              'name':currentpass.text,
+              'number':newpass.text,
+              'password' :confimepass.text
             };
             var response = await http.post(
                 Uri.parse('https://creditpost.000webhostapp.com/api.php'),
@@ -170,7 +170,21 @@ class _changepasswordState extends State<changepassword> {
             );
             if (response.statusCode == 200) {
               var data= await jsonDecode(response.body);
+              print(response.body);
               if (data['status']==1) {
+                Get.defaultDialog(
+                    title: 'Password is Change',
+                    middleText: '',
+                    titlePadding: EdgeInsets.only(top: 40),
+                    titleStyle: TextStyle(fontSize: 17,color: Colors.black,fontStyle: FontStyle.italic),
+                    radius: 15,
+                    backgroundColor: Colors.white,
+                    actions: [
+                      ElevatedButton(onPressed: () {
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>loginpage()));
+                      }, child: Text('Ok'))
+                    ]
+                );
                 print(response.body);
               }
             } else {

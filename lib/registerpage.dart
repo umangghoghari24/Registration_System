@@ -198,7 +198,8 @@ class _registerpageState extends State<registerpage> {
                                 body: jsonEncode(submitdata)
                             );
                             if (response.statusCode == 200) {
-                        //      print(response.body);
+                          //  print(jsonEncode(submitdata));
+
 
                               var data= await jsonDecode(response.body);
                               if (data['status']==1) {

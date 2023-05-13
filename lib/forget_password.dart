@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:login_page/loginpage.dart';
 import 'package:http/http.dart' as http;
@@ -17,10 +16,9 @@ class _forgetpasswordState extends State<forgetpassword> {
 
   final forgetkey=GlobalKey<FormState>();
 
-  TextEditingController forgetpass=TextEditingController();
+  TextEditingController uname=TextEditingController();
   TextEditingController newpass=TextEditingController();
   TextEditingController confimepass=TextEditingController();
-
   var passnotvisible=true;
 
   @override
@@ -56,7 +54,7 @@ class _forgetpasswordState extends State<forgetpassword> {
                 SizedBox(height: 15,),
                 TextFormField(
                   textAlignVertical: TextAlignVertical.center,
-                  controller: forgetpass,
+                  controller: uname,
                   validator: (value) {
                     if (value==null || value.isEmpty){
                       return 'Username is wrong';
@@ -160,18 +158,20 @@ class _forgetpasswordState extends State<forgetpassword> {
                   onPressed: () async {
                   if (forgetkey.currentState!.validate()) {
                     var forgetdata = {
-                      'uname': newpass.text,
-                      'npass': forgetpass.text,
+                      'uname': uname.text,
+                      'npass': newpass.text,
+                      'cpass': confimepass.text
                     };
+                    print(jsonEncode(forgetdata));
                     var response = await http.post(
                         Uri.parse('https://ntce.000webhostapp.com/forget.php'),
                         body: jsonEncode(forgetdata)
                     );
                     if (response.statusCode == 200) {
-
                     //  print(response.body);
+
                       var data= await jsonDecode(response.body);
-                      if (data['status']==1) {
+                      if (data['status'] == 1) {
                         Get.defaultDialog(
                             title: 'Password is forget',
                             middleText: '',
@@ -182,12 +182,10 @@ class _forgetpasswordState extends State<forgetpassword> {
                             actions: [
                               ElevatedButton(onPressed: () {
                                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>loginpage()));
-                              }, child: Text('ok'))
+                              }, child: Text('Ok'))
                             ]
                         );
-
                         print(response.body);
-
                       }
                     } else {
                       print('Password is not match');

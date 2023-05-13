@@ -61,10 +61,6 @@ class _loginpageState extends State<loginpage> {
           image: DecorationImage(
               image: AssetImage('assetimage/signin.jpg')
               ,fit: BoxFit.fill),
-          // image: DecorationImage(
-          //   image: NetworkImage('https://orstedcdn.azureedge.net/-/media/www/images/corp/investor/cmd/cmd-sign-up-banner.ashx?mh=1440&mw=1440&rev=a32daff0198f476fa217d2db90cd4474&hash=20615A8C476A311F950181E6EB1EFB46'),
-           //   fit: BoxFit.fill,
-          // )
         ),
         height: MediaQuery.of(context).size.height,
         child: Form(
