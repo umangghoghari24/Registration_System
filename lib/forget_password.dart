@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:login_page/loginpage.dart';
 import 'package:http/http.dart' as http;
+import 'package:get/get.dart';
+
 
 class forgetpassword extends StatefulWidget {
   const forgetpassword({Key? key}) : super(key: key);
@@ -154,24 +156,43 @@ class _forgetpasswordState extends State<forgetpassword> {
                     ),
                 ),
                 SizedBox(height: 10,),
-                ElevatedButton(onPressed: () async {
+                ElevatedButton(
+                  onPressed: () async {
                   if (forgetkey.currentState!.validate()) {
                     var forgetdata = {
-                      'uname': forgetpass.text,
-                      'pass': newpass.text,
+                      'uname': newpass.text,
+                      'npass': forgetpass.text,
                     };
                     var response = await http.post(
                         Uri.parse('https://ntce.000webhostapp.com/forget.php'),
                         body: jsonEncode(forgetdata)
                     );
                     if (response.statusCode == 200) {
+
+                    //  print(response.body);
                       var data= await jsonDecode(response.body);
                       if (data['status']==1) {
+                        Get.defaultDialog(
+                            title: 'Password is forget',
+                            middleText: '',
+                            titlePadding: EdgeInsets.only(top: 40),
+                            titleStyle: TextStyle(fontSize: 17,color: Colors.black,fontStyle: FontStyle.italic),
+                            radius: 15,
+                            backgroundColor: Colors.white,
+                            actions: [
+                              ElevatedButton(onPressed: () {
+                                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>loginpage()));
+                              }, child: Text('ok'))
+                            ]
+                        );
+
                         print(response.body);
+
                       }
                     } else {
                       print('Password is not match');
                     }
+                 //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>loginpage()));
                   }
                 },
                   child: Text('FORGET',

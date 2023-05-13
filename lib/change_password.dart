@@ -165,7 +165,7 @@ class _changepasswordState extends State<changepassword> {
               'pass': newpass.text,
             };
             var response = await http.post(
-                Uri.parse(''),
+                Uri.parse('https://creditpost.000webhostapp.com/api.php'),
                 body: jsonEncode(changedata)
             );
             if (response.statusCode == 200) {

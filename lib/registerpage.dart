@@ -184,6 +184,8 @@ class _registerpageState extends State<registerpage> {
                       child: ElevatedButton(
                         onPressed: () async {
                           if (keys.currentState!.validate()) {
+
+
                             var submitdata = {
                               'uname': usern.text,
                               'pass': pas.text,
@@ -196,9 +198,10 @@ class _registerpageState extends State<registerpage> {
                                 body: jsonEncode(submitdata)
                             );
                             if (response.statusCode == 200) {
+                        //      print(response.body);
+
                               var data= await jsonDecode(response.body);
                               if (data['status']==1) {
-                                print(response.body);
                                 Get.defaultDialog(
                                   title: 'Regitretion successful',
                                   middleText: '',
