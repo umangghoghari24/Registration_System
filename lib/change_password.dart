@@ -15,6 +15,7 @@ class _changepasswordState extends State<changepassword> {
 
   final changekey=GlobalKey<FormState>();
 
+  TextEditingController uname=TextEditingController();
   TextEditingController currentpass=TextEditingController();
   TextEditingController newpass=TextEditingController();
   TextEditingController confimepass=TextEditingController();
@@ -50,13 +51,36 @@ class _changepasswordState extends State<changepassword> {
                         fit: BoxFit.fill,
                       )
                   ),
-                  height: MediaQuery.of(context).size.height-380,
+                  height: MediaQuery.of(context).size.height-432,
                 ),
-                SizedBox(height: 2,),
+                SizedBox(height: 4,),
              //   Text('Change Your Password',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                TextFormField(
+                    textAlignVertical: TextAlignVertical.center,
+                    controller: uname,
+                    validator: (value) {
+                      if (value==null || value.isEmpty){
+                        return 'Username is wrong';
+                      }
+                    },
+                    decoration: InputDecoration(
+                      labelText: 'Enter user name',
+                      labelStyle: TextStyle(color: Colors.black,fontStyle: FontStyle.italic,fontWeight: FontWeight.bold,fontSize: 19),
+                      prefixIcon: Icon(Icons.person,color: Colors.black87,size: 30,),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(45),
+                          borderSide: BorderSide(width: 3,color: Colors.white)
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide:
+                        BorderSide(width: 3, color: Colors.white),
+                        borderRadius: BorderRadius.circular(45.0),
+                      ),
+                    )
+                ),
                 SizedBox(height: 7,),
                 TextFormField(
-                    textAlign: TextAlign.center,
+                    textAlignVertical: TextAlignVertical.center,
                     controller: currentpass,
                     validator: (value) {
                       if (value==null || value.isEmpty){
@@ -80,7 +104,7 @@ class _changepasswordState extends State<changepassword> {
                 ),
                 SizedBox(height: 10,),
                 TextFormField(
-                    textAlign: TextAlign.center,
+                    textAlignVertical: TextAlignVertical.center,
                     controller: newpass,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -123,7 +147,7 @@ class _changepasswordState extends State<changepassword> {
                 ),
                 SizedBox(height: 10,),
                 TextFormField(
-                  textAlign: TextAlign.center,
+                  textAlignVertical: TextAlignVertical.center,
                   controller: confimepass,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -160,17 +184,19 @@ class _changepasswordState extends State<changepassword> {
         ElevatedButton(onPressed: () async {
           if (changekey.currentState!.validate()) {
             var changedata = {
-              'name':currentpass.text,
-              'number':newpass.text,
-              'password' :confimepass.text
+              'uname':uname.text,
+              'opass':currentpass.text,
+              'npass':newpass.text,
+              'cpass' :confimepass.text
             };
+            print(jsonEncode(changedata));
             var response = await http.post(
-                Uri.parse('https://creditpost.000webhostapp.com/api.php'),
+                Uri.parse('https://ntce.000webhostapp.com/change.php'),
                 body: jsonEncode(changedata)
             );
             if (response.statusCode == 200) {
               var data= await jsonDecode(response.body);
-              print(response.body);
+            //  print(response.body);
               if (data['status']==1) {
                 Get.defaultDialog(
                     title: 'Password is Change',
@@ -199,7 +225,6 @@ class _changepasswordState extends State<changepassword> {
           ),
         ),
       ),
-
     );
   }
 }
