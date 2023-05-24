@@ -21,6 +21,7 @@ class _registerpageState extends State<registerpage> {
 
    final keys=GlobalKey<FormState>();
   var check=false;
+  var passnotvisible=true;
 
   Future<void> submitdata() async {}
 
@@ -98,6 +99,14 @@ class _registerpageState extends State<registerpage> {
                     labelText: 'Password',
                     labelStyle: TextStyle(color: Colors.black,fontStyle: FontStyle.italic,fontSize: 19,fontWeight: FontWeight.bold),
                     prefixIcon: Icon(Icons.lock,color: Colors.black87,),
+                      suffixIcon: IconButton(
+                        icon: Icon(passnotvisible?Icons.visibility:Icons.visibility_off),color: Colors.black,
+                        onPressed: (){
+                          setState(() {
+                            passnotvisible=!passnotvisible;
+                          });
+                        },
+                      ),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(45),
                         borderSide: BorderSide(width: 2)
@@ -199,8 +208,6 @@ class _registerpageState extends State<registerpage> {
                             );
                             if (response.statusCode == 200) {
                           //  print(jsonEncode(submitdata));
-
-
                               var data= await jsonDecode(response.body);
                               if (data['status']==1) {
                                 Get.defaultDialog(

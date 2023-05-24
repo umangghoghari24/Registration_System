@@ -54,7 +54,6 @@ class _changepasswordState extends State<changepassword> {
                   height: MediaQuery.of(context).size.height-432,
                 ),
                 SizedBox(height: 4,),
-             //   Text('Change Your Password',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
                 TextFormField(
                     textAlignVertical: TextAlignVertical.center,
                     controller: uname,

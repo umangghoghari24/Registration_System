@@ -21,6 +21,8 @@ class _loginpageState extends State<loginpage> {
   TextEditingController password= TextEditingController();
 
   final key= GlobalKey<FormState>();
+  var passnotvisible=true;
+
 
 
 
@@ -109,11 +111,30 @@ class _loginpageState extends State<loginpage> {
                     if (value==null || value.isEmpty){
                       return 'password is required';
                     }
+                    String  pattern = r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
+                    RegExp regExp = new RegExp(pattern);
+                    var match= regExp.hasMatch(value);
+                    if(value.length <8 ){
+                      return 'Please Enter 8 charter';
+                    }
+                    else{
+                      if(match==false){
+                        return 'Enter the strong password';
+                      }
+                    }
                   },
                   decoration: InputDecoration(
                       labelText: 'Password',
                       labelStyle: TextStyle(color: Colors.black,fontStyle: FontStyle.italic,fontWeight: FontWeight.bold,fontSize: 20),
                       prefixIcon: Icon(Icons.lock,color: Colors.black87,size: 27,),
+                    suffixIcon: IconButton(
+                      icon: Icon(passnotvisible?Icons.visibility:Icons.visibility_off),color: Colors.black,
+                      onPressed: (){
+                        setState(() {
+                          passnotvisible=!passnotvisible;
+                        });
+                      },
+                    ),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(45),
                         borderSide: BorderSide(width: 3,color: Colors.white)
