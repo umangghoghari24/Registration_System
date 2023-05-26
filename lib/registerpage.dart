@@ -211,7 +211,7 @@ class _registerpageState extends State<registerpage> {
                               var data= await jsonDecode(response.body);
                               if (data['status']==1) {
                                 Get.defaultDialog(
-                                  title: 'Regitretion successful',
+                                  title: 'Regitretion successful🥳',
                                   middleText: '',
                                   titlePadding: EdgeInsets.only(top: 40),
                                   titleStyle: TextStyle(fontSize: 17,color: Colors.black,fontStyle: FontStyle.italic),

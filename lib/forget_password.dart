@@ -173,7 +173,7 @@ class _forgetpasswordState extends State<forgetpassword> {
                       var data= await jsonDecode(response.body);
                       if (data['status'] == 1) {
                         Get.defaultDialog(
-                            title: 'Password is forget',
+                            title: 'Password is forget😁',
                             middleText: '',
                             titlePadding: EdgeInsets.only(top: 40),
                             titleStyle: TextStyle(fontSize: 17,color: Colors.black,fontStyle: FontStyle.italic),

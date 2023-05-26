@@ -198,7 +198,7 @@ class _changepasswordState extends State<changepassword> {
             //  print(response.body);
               if (data['status']==1) {
                 Get.defaultDialog(
-                    title: 'Password is Change',
+                    title: 'Password is Changed😁',
                     middleText: '',
                     titlePadding: EdgeInsets.only(top: 40),
                     titleStyle: TextStyle(fontSize: 17,color: Colors.black,fontStyle: FontStyle.italic),
