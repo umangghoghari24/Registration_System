@@ -79,6 +79,7 @@ class _forgetpasswordState extends State<forgetpassword> {
                 TextFormField(
                   textAlignVertical: TextAlignVertical.center,
                   controller: newpass,
+                    obscureText: !passnotvisible,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'password is Required';

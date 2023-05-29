@@ -79,6 +79,7 @@ class _registerpageState extends State<registerpage> {
                 SizedBox(height: 15,),
                 TextFormField(
                   controller: pas,
+                  obscureText: !passnotvisible,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'password is Required';

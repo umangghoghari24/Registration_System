@@ -105,6 +105,7 @@ class _changepasswordState extends State<changepassword> {
                 TextFormField(
                     textAlignVertical: TextAlignVertical.center,
                     controller: newpass,
+                    obscureText: !passwordnotvisible,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'password is Required';
@@ -148,6 +149,7 @@ class _changepasswordState extends State<changepassword> {
                 TextFormField(
                   textAlignVertical: TextAlignVertical.center,
                   controller: confimepass,
+                  obscureText: !passwordnotvisible,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'password is wrong';

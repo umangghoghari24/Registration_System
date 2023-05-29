@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:login_page/change_password.dart';
 import 'package:login_page/forget_password.dart';
@@ -22,6 +24,7 @@ class _loginpageState extends State<loginpage> {
 
   final key= GlobalKey<FormState>();
   var passnotvisible=true;
+  var obscureText= true;
 
 
 
@@ -107,6 +110,7 @@ class _loginpageState extends State<loginpage> {
                 TextFormField(
                   textAlignVertical: TextAlignVertical.center,
                   controller: password,
+                  obscureText: !passnotvisible,
                   validator: (value) {
                     if (value==null || value.isEmpty){
                       return 'password is required';
@@ -127,13 +131,18 @@ class _loginpageState extends State<loginpage> {
                       labelText: 'Password',
                       labelStyle: TextStyle(color: Colors.black,fontStyle: FontStyle.italic,fontWeight: FontWeight.bold,fontSize: 20),
                       prefixIcon: Icon(Icons.lock,color: Colors.black87,size: 27,),
-                    suffixIcon: IconButton(
-                      icon: Icon(passnotvisible?Icons.visibility:Icons.visibility_off),color: Colors.black,
-                      onPressed: (){
-                        setState(() {
-                          passnotvisible=!passnotvisible;
-                        });
+                    suffixIcon: GestureDetector(
+                      onTap: () {
+                        passnotvisible = !passnotvisible;
                       },
+                      child: IconButton(
+                        icon: Icon(passnotvisible?Icons.visibility:Icons.visibility_off),color: Colors.black,
+                        onPressed: (){
+                          setState(() {
+                            passnotvisible=!passnotvisible;
+                          });
+                        },
+                      ),
                     ),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(45),
@@ -151,7 +160,8 @@ class _loginpageState extends State<loginpage> {
                 },
                     child: Padding(
                       padding:  EdgeInsets.only(left: 240),
-                      child: Text('Forget password',style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic),),
+                      child: Text('Forget password',style: TextStyle(color: Colors.indigo,fontSize: 15,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic,
+                          decoration: TextDecoration.underline,),),
                     )),
                 SizedBox(height: 15,),
                 Container(
