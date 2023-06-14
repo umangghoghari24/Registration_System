@@ -194,8 +194,6 @@ class _registerpageState extends State<registerpage> {
                       child: ElevatedButton(
                         onPressed: () async {
                           if (keys.currentState!.validate()) {
-
-
                             var submitdata = {
                               'uname': usern.text,
                               'pass': pas.text,

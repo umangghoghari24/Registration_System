@@ -26,9 +26,6 @@ class _loginpageState extends State<loginpage> {
   var passnotvisible=true;
   var obscureText= true;
 
-
-
-
   void login() async {
  //    if (usname.text=='umang' && password.text=='1010'){
  // final SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -224,7 +221,6 @@ class _loginpageState extends State<loginpage> {
                 ),
                 Container(
                   child: ElevatedButton(
-
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context)=>registerpage()));
                     },
