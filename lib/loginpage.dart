@@ -170,7 +170,7 @@ class _loginpageState extends State<loginpage> {
                         'pass': password.text,
                       };
                       var response = await http.post(
-                          Uri.parse('https://ntce.000webhostapp.com/login.php'),
+                          Uri.parse('https://ntce.000webhostapp.com/registration/login.php'),
                           body: jsonEncode(submitdata));
                       if (response.statusCode == 200) {
                         var data= await jsonDecode(response.body);

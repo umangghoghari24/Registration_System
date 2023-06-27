@@ -192,7 +192,7 @@ class _changepasswordState extends State<changepassword> {
             };
             print(jsonEncode(changedata));
             var response = await http.post(
-                Uri.parse('https://ntce.000webhostapp.com/change.php'),
+                Uri.parse('https://ntce.000webhostapp.com/registration/change.php'),
                 body: jsonEncode(changedata)
             );
             if (response.statusCode == 200) {

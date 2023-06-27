@@ -202,7 +202,7 @@ class _registerpageState extends State<registerpage> {
                             };
                             var response = await http.post(
                                 Uri.parse(
-                                    'https://ntce.000webhostapp.com/api.php'),
+                                    'https://ntce.000webhostapp.com/registration/api.php'),
                                 body: jsonEncode(submitdata)
                             );
                             if (response.statusCode == 200) {

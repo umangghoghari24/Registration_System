@@ -165,7 +165,7 @@ class _forgetpasswordState extends State<forgetpassword> {
                     };
                     print(jsonEncode(forgetdata));
                     var response = await http.post(
-                        Uri.parse('https://ntce.000webhostapp.com/forget.php'),
+                        Uri.parse('https://ntce.000webhostapp.com/registration/forget.php'),
                         body: jsonEncode(forgetdata)
                     );
                     if (response.statusCode == 200) {
