@@ -43,7 +43,7 @@ class _loginpageState extends State<loginpage> {
     var getusname= await preferences.getString('usname');
     if(getusname!=null){
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>home()));
-    }
+    } 
   }
   @override
   void initState() {
